@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useRef, useEffect } from "react";
-import { checkConnection, createProposal, castVote, executeProposal, vetoProposal, getProposal, listProposals, hasVoted, getProposalCount } from "../src/lib/stellar.js"
+import { checkConnection, createProposal, castVote, executeProposal, vetoProposal, getProposal, listProposals, hasVoted, getProposalCount } from "../src/lib/nero.js"
 
 const toOutput = (value) => {
     if (typeof value === "string") return value;
@@ -17,7 +17,7 @@ export default function App() {
         id: "prop1",
         proposer: "",
         title: "Fund ecosystem grants",
-        description: "Allocate 10000 XLM for developer grants",
+        description: "Allocate 10000 NERO for developer grants",
         category: "treasury",
         votingPeriod: "604800",
         voter: "",
@@ -153,7 +153,7 @@ export default function App() {
             <section className="hero">
                 <div className="hero-icon">&#9878;</div>
                 <h1>DAO Governance</h1>
-                <p className="subtitle">Submit proposals, cast weighted votes, and execute governance decisions on Stellar.</p>
+                <p className="subtitle">Submit proposals, cast weighted votes, and execute governance decisions on Nero Chain.</p>
 
                 <div className="features">
                     <div className="feature">
@@ -175,7 +175,7 @@ export default function App() {
 
                 <div className="wallet-bar">
                     <button type="button" id="connectWallet" onClick={onConnect} className={loadingAction === "connect" ? "btn-loading" : ""} disabled={isBusy}>
-                        Connect Freighter
+                        Connect Wallet
                     </button>
                     <span className="wallet-text" id="walletState">{walletState}</span>
                 </div>
@@ -215,7 +215,7 @@ export default function App() {
                             </div>
                             <div className="field">
                                 <label htmlFor="proposer">Proposer Address</label>
-                                <input id="proposer" name="proposer" value={form.proposer} onChange={setField} placeholder="G..." />
+                                <input id="proposer" name="proposer" value={form.proposer} onChange={setField} placeholder="0x..." />
                                 <span className="field-helper">Auto-filled on wallet connect</span>
                             </div>
                             <div className="field full-width">
@@ -256,11 +256,11 @@ export default function App() {
                         <div className="form-grid">
                             <div className="field">
                                 <label htmlFor="voter">Voter Address</label>
-                                <input id="voter" name="voter" value={form.voter} onChange={setField} placeholder="G..." />
-                                <span className="field-helper">Your Stellar address</span>
+                                <input id="voter" name="voter" value={form.voter} onChange={setField} placeholder="0x..." />
+                                <span className="field-helper">Your address</span>
                             </div>
                             <div className="field">
-                                <label htmlFor="votePower">Vote Power (i128)</label>
+                                <label htmlFor="votePower">Vote Power</label>
                                 <input id="votePower" name="votePower" value={form.votePower} onChange={setField} type="number" />
                                 <span className="field-helper">Weight of your vote</span>
                             </div>
@@ -304,11 +304,11 @@ export default function App() {
                             <div className="form-grid">
                                 <div className="field">
                                     <label htmlFor="executor">Executor Address (optional)</label>
-                                    <input id="executor" name="executor" value={form.executor} onChange={setField} placeholder="G..." />
+                                    <input id="executor" name="executor" value={form.executor} onChange={setField} placeholder="0x..." />
                                 </div>
                                 <div className="field">
                                     <label htmlFor="vetoer">Vetoer Address (optional)</label>
-                                    <input id="vetoer" name="vetoer" value={form.vetoer} onChange={setField} placeholder="G..." />
+                                    <input id="vetoer" name="vetoer" value={form.vetoer} onChange={setField} placeholder="0x..." />
                                 </div>
                             </div>
 
